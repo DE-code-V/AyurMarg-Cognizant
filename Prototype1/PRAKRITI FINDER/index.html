@@ -4,31 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Prakriti Analyzer</title>
+    <title>Prakriti Finding</title>
 </head>
 <body>
 
-<div id="welcomeScreen" class="screen">
-    <h1>Welcome to Prakriti Analyzer</h1>
-    <p>Discover your Ayurvedic constitution with a few simple questions.</p>
-    <button onclick="startAnalysis()">Start</button>
-</div>
-
-<div id="questionnaireScreen" class="screen hidden">
-    <h2>Questionnaire</h2>
-    <div id="questionContainer" class="center-align">
-        <!-- Questions and options will be dynamically added here -->
+<div class="container">
+    <img src="background_image.jpg" alt="Ayurveda Background" class="background-image">
+    <div class="content">
+        <h1>Prakriti Finding</h1>
+        <form id="prakritiForm">
+            <!-- Questions will be dynamically generated here -->
+        </form>
+        <button type="button" onclick="calculatePrakriti()">Calculate Prakriti</button>
+        <div id="result"></div>
     </div>
-    <div id="progressIndicator" class="center-align"></div>
-    <button onclick="prevQuestion()">Back</button>
-    <button onclick="nextQuestion()">Next</button>
-</div>
-
-<div id="resultsScreen" class="screen hidden">
-    <h2>Results</h2>
-    <p id="doshaSummary"></p>
-    <p id="recommendations"></p>
-    <button onclick="restartAnalysis()">Restart</button>
 </div>
 
 <script src="script.js"></script>
