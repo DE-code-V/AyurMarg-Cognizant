@@ -1,248 +1,130 @@
-let currentQuestion = 0;
-let answers = [];
-
+// Define the questions with their respective scores
 const questions = [
-    { 
-        question: "How would you describe your body frame?", 
-        options: ["Small and slender", "Medium", "Large and sturdy"]
-    },
-    { 
-        question: "How is your digestion?", 
-        options: ["Fast metabolism, easily digestible", "Moderate", "Slow digestion, heavy meals"]
-    },
-    { 
-        question: "How is your skin type?", 
-        options: ["Dry", "Sensitive", "Oily"]
-    },
-    { 
-        question: "What is your sleep pattern?", 
-        options: ["Light sleeper, variable sleep duration", "Moderate sleeper, consistent sleep duration", "Deep sleeper, long sleep duration"]
-    },
-    { 
-        question: "How is your appetite?", 
-        options: ["Variable, sometimes strong, sometimes weak", "Strong and consistent", "Weak and variable"]
-    },
-    { 
-        question: "How do you handle stress?", 
-        options: ["Anxious, restless", "Irritable, aggressive", "Calm, slow to react"]
-    },
-    { 
-        question: "How is your energy level throughout the day?", 
-        options: ["High energy, variable", "Moderate, consistent", "Low energy, variable"]
-    },
-    { 
-        question: "What is your preferred climate?", 
-        options: ["Warm and humid", "Moderate", "Cool and dry"]
-    },
-    { 
-        question: "How is your memory?", 
-        options: ["Forgetful, variable", "Sharp, focused", "Stable, slow"]
-    },
-    { 
-        question: "How do you handle change?", 
-        options: ["Adaptable, flexible", "Resistant, stubborn", "Cautious, slow"]
-    },
-    { 
-        question: "What type of exercise do you prefer?", 
-        options: ["Energetic, fast-paced", "Moderate, rhythmic", "Gentle, calming"]
-    },
-    { 
-        question: "How is your hair type?", 
-        options: ["Dry, frizzy", "Moderate, silky", "Oily, thick"]
-    },
-    { 
-        question: "What is your preferred food taste?", 
-        options: ["Sweet, salty", "Spicy, sour", "Bitter, astringent"]
-    },
-    { 
-        question: "How do you handle challenges?", 
-        options: ["Enthusiastic, impulsive", "Competitive, intense", "Steady, patient"]
-    },
-    { 
-        question: "What type of weather aggravates you?", 
-        options: ["Cold, dry", "Hot, humid", "Windy"]
-    },
-    { 
-        question: "How is your sense of taste?", 
-        options: ["Variable, inconsistent", "Strong, intense", "Mild, stable"]
-    },
-    { 
-        question: "What is your preferred leisure activity?", 
-        options: ["Active, adventurous", "Intellectual, thoughtful", "Relaxing, calming"]
-    },
-    { 
-        question: "How do you handle conflicts?", 
-        options: ["Avoid, withdraw", "Confront, argue", "Seek compromise, mediate"]
-    },
-    { 
-        question: "How is your posture?", 
-        options: ["Slouched, relaxed", "Straight, upright", "Stiff, tense"]
-    },
-    { 
-        question: "What is your preferred color?", 
-        options: ["Warm colors (red, orange, yellow)", "Cool colors (blue, green, purple)", "Neutral colors (white, black, gray)"]
-    },
-    // Additional Questions
-    { 
-        question: "How is your sense of smell?", 
-        options: ["Sensitive, easily overwhelmed", "Moderate", "Less sensitive, difficult to overwhelm"]
-    },
-    { 
-        question: "What is your preferred reading genre?", 
-        options: ["Fiction", "Non-fiction", "Poetry"]
-    },
-    { 
-        question: "How is your social behavior?", 
-        options: ["Outgoing, talkative", "Moderate, balanced", "Reserved, introverted"]
-    },
-    { 
-        question: "How do you approach decision-making?", 
-        options: ["Quick, impulsive", "Thoughtful, methodical", "Cautious, deliberative"]
-    },
-    { 
-        question: "How do you spend your weekends?", 
-        options: ["Engaging in social activities", "Pursuing hobbies", "Relaxing, unwinding"]
-    },
-    { 
-        question: "How is your reaction to pain?", 
-        options: ["High sensitivity, intense reaction", "Moderate sensitivity, manageable reaction", "Low sensitivity, minimal reaction"]
-    },
-    { 
-        question: "What is your preferred communication style?", 
-        options: ["Expressive, animated", "Clear, concise", "Thoughtful, reflective"]
-    },
-    { 
-        question: "How is your sense of humor?", 
-        options: ["Playful, spontaneous", "Witty, clever", "Dry, subtle"]
-    },
-    { 
-        question: "What type of music do you enjoy?", 
-        options: ["Upbeat, energetic", "Melodic, calming", "Complex, intricate"]
-    },
-    { 
-        question: "How do you handle criticism?", 
-        options: ["Sensitive, take it personally", "Reflective, open to feedback", "Reserved, unaffected"]
-    },
-    { 
-        question: "What is your preferred mode of transportation?", 
-        options: ["Fast and efficient", "Steady and comfortable", "Scenic and leisurely"]
-    },
-    { 
-        question: "How is your response to surprises?", 
-        options: ["Excited, enjoy surprises", "Adaptable, take them in stride", "Prefer predictability, dislike surprises"]
-    },
-    { 
-        question: "How do you express affection?", 
-        options: ["Verbally, expressively", "Through actions, gestures", "Reserved, subtle"]
-    },
-    { 
-        question: "What type of movies do you enjoy?", 
-        options: ["Action, adventure", "Drama, romance", "Documentaries, educational"]
-    },
-    { 
-        question: "How is your financial behavior?", 
-        options: ["Spontaneous spender", "Moderate, balanced", "Cautious saver"]
-    },
-    { 
-        question: "How do you handle time management?", 
-        options: ["Flexible, go with the flow", "Organized, planned", "Structured, adhere to a routine"]
-    },
-    { 
-        question: "What is your approach to learning?", 
-        options: ["Quick learner, grasp concepts easily", "Steady learner, methodical", "Thorough learner, require repetition"]
-    },
-    { 
-        question: "How do you handle public speaking?", 
-        options: ["Confident, enjoy it", "Comfortable, but prefer not to", "Nervous, anxious"]
-    },
-    { 
-        question: "What is your approach to technology?", 
-        options: ["Early adopter, tech enthusiast", "Adaptable, use what's necessary", "Prefer traditional methods, skeptical of technology"]
-    },
-    // Add more questions as needed
+    // Kapha
+    { text: "Whether your skin remains oily throughout the year in comparison to others?", yesScore: 120, noScore: 0, dosha: "Kapha" },
+    { text: "Are your body-hairs & skin shiny, even when no oil or moisturizer is used?", yesScore: 120, noScore: 0, dosha: "Kapha" },
+    { text: "Are you considered attractive among your friends?", yesScore: 40, noScore: 0, dosha: "Kapha" },
+    { text: "Do even mild or trivial injuries on your body make you upset?", yesScore: 40, noScore: 0, dosha: "Kapha" },
+    { text: "Among your family members, is your complexion considered fairer?", yesScore: 40, noScore: 0, dosha: "Kapha" },
+    { text: "Do you think you have intense sexual desire?", yesScore: 120, noScore: 0, dosha: "Kapha" },
+    { text: "Have you got well-built muscles?", yesScore: 60, noScore: 0, dosha: "Kapha" },
+    { text: "Do you have a well-nourished & normally developed body?", yesScore: 120, noScore: 0, dosha: "Kapha" },
+    { text: "Are you lazy and disinterested in activities like morning walk/ jogging, swimming, or any type of outdoor games?", yesScore: 40, noScore: 0, dosha: "Kapha" },
+    { text: "Are you slow in consuming the food? (Even after all have left the dining hall, you are still consuming the same amount of food).", yesScore: 40, noScore: 0, dosha: "Kapha" },
+    { text: "When you go to morning walk or college or office, do you walk slowly in comparison to others?", yesScore: 40, noScore: 0, dosha: "Kapha" },
+    { text: "If you are assigned any work, do you take some extra time to start it?", yesScore: 40, noScore: 0, dosha: "Kapha" },
+    { text: "Do you get irritated easily? (For example, when you don’t get breakfast on time in your hostel or when the power goes off while watching a cricket match or your favourite movie on television).", yesScore: 0, noScore: 40, dosha: "Kapha" },
+    { text: "Are you late to develop/suffer from symptoms after exposure to common causative factors? (For example, during seasonal changes, when your friends are easily caught up with flu etc., you are still healthy among them).", yesScore: 40, noScore: 0, dosha: "Kapha" },
+    { text: "Does your gait (style of walking) change with respect to speed or manner frequently?", yesScore: 0, noScore: 120, dosha: "Kapha" },
+    { text: "Do you feel hungry more frequently and do you consume more food in comparison to others?", yesScore: 0, noScore: 30, dosha: "Kapha" },
+    { text: "Do you tolerate heat easily?", yesScore: 30, noScore: 0, dosha: "Kapha" },
+    { text: "Do you consume liquids in more quantity and frequency in comparison to others?", yesScore: 0, noScore: 30, dosha: "Kapha" },
+    { text: "Do you perspire less in comparison to others?", yesScore: 30, noScore: 0, dosha: "Kapha" },
+    { text: "Are sounds produced frequently in your joints on movement?", yesScore: 0, noScore: 120, dosha: "Kapha" },
+    { text: "Have you got a good/ attractive complexion?", yesScore: 60, noScore: 0, dosha: "Kapha" },
+    { text: "Have you got a sweet & pleasant voice?", yesScore: 60, noScore: 0, dosha: "Kapha" },
+
+    // Pitta
+    { text: "Are you more comfortable in winter than summer?", yesScore: 17, noScore: 0, dosha: "Pitta" },
+    { text: "Among your family members, is your complexion considered fairer?", yesScore: 17, noScore: 0, dosha: "Pitta" },
+    { text: "Does your temperature of oral cavity remain towards the upper limit of the normal range?", yesScore: 17, noScore: 0, dosha: "Pitta" },
+    { text: "Do you have excessive black moles, freckles, etc., on your skin? Or Have you noticed the new appearance of black moles often on your skin?", yesScore: 17, noScore: 0, dosha: "Pitta" },
+    { text: "Do you feel excessive hunger & thirst in comparison to others?", yesScore: 17, noScore: 0, dosha: "Pitta" },
+    { text: "Have you experienced premature graying, wrinkling of the skin & early baldness?", yesScore: 17, noScore: 0, dosha: "Pitta" },
+    { text: "Do you have soft, scanty, brown hair on your face, body & head?", yesScore: 17, noScore: 0, dosha: "Pitta" },
+    { text: "Do you involve yourself in risky & heroic activities requiring physical strength often?", yesScore: 24, noScore: 0, dosha: "Pitta" },
+    { text: "Do you have the ability to digest large quantities of food easily?", yesScore: 24, noScore: 0, dosha: "Pitta" },
+    { text: "Do you take large quantities of food & drink in comparison to others?", yesScore: 24, noScore: 0, dosha: "Pitta" },
+    { text: "Do you get easily irritated for small/negligible problems in day-to-day life?", yesScore: 24, noScore: 0, dosha: "Pitta" },
+    { text: "Do you consume food more frequently than others? (5-6 times/day)", yesScore: 24, noScore: 0, dosha: "Pitta" },
+    { text: "Do you have soft & loose muscle bulk, especially around the joints?", yesScore: 60, noScore: 0, dosha: "Pitta" },
+    { text: "In comparison to others, do you pass urine & stool in large quantities and do you perspire more?", yesScore: 60, noScore: 0, dosha: "Pitta" },
+    { text: "Do your friends complain of a bad smell being emitted from your body & mouth?", yesScore: 120, noScore: 0, dosha: "Pitta" },
+    { text: "Do you think you have intense sexual desire?", yesScore: 0, noScore: 120, dosha: "Pitta" },
+
+
+    // Vata
+    { text: "Whether your skin remains dry throughout the year in comparison to others?", yesScore: 30, noScore: 0, dosha: "Vata" },
+    { text: "Is your body undernourished/ emaciated?", yesScore: 30, noScore: 0, dosha: "Vata" },
+    { text: "Have you got rough, low, broken, or obstructed voice?", yesScore: 30, noScore: 0, dosha: "Vata" },
+    { text: "Does your sleep last less than 6 hours per day? Or Can your sleep be disturbed easily?", yesScore: 30, noScore: 0, dosha: "Vata" },
+    { text: "Do you change walking speed & style from time to time?", yesScore: 40, noScore: 0, dosha: "Vata" },
+    { text: "Do you keep changing your food habits from time to time?", yesScore: 40, noScore: 0, dosha: "Vata" },
+    { text: "Do you keep changing your walking/jogging habit from time to time?", yesScore: 40, noScore: 0, dosha: "Vata" },
+    { text: "Do you keep your joints, eyes, eyebrows, jaw, lips, tongue, head, shoulder, hands & feet frequently moving?", yesScore: 120, noScore: 0, dosha: "Vata" },
+    { text: "Are you considered talkative among your friends?", yesScore: 60, noScore: 0, dosha: "Vata" },
+    { text: "Do you have prominent veins & tendons all over the body?", yesScore: 60, noScore: 0, dosha: "Vata" },
+    { text: "Do you generally start the work assigned to you immediately?", yesScore: 15, noScore: 0, dosha: "Vata" },
+    { text: "Do you get irritated easily? (E.g., when you do not get breakfast on time in your hostel or when the power goes off while watching a cricket match or your favorite movie over television)", yesScore: 15, noScore: 0, dosha: "Vata" },
+    { text: "Do you get frightened easily?", yesScore: 15, noScore: 0, dosha: "Vata" },
+    { text: "Do you make friends easily & also lose them easily?", yesScore: 15, noScore: 0, dosha: "Vata" },
+    { text: "Do you generally learn things quickly? Or Do you have good grasping power?", yesScore: 15, noScore: 0, dosha: "Vata" },
+    { text: "Is your long-term memory weak? (E.g., you can remember only a few names of your friends at your primary school).", yesScore: 15, noScore: 0, dosha: "Vata" },
+    { text: "Are you more comfortable in summer? Or Do you prefer hot/warm drinks over cold drinks?", yesScore: 15, noScore: 0, dosha: "Vata" },
+    { text: "Do you generally develop symptoms immediately after exposure to common causative factors? (You are easily caught by diseases like flu, allergy during seasonal changes).", yesScore: 15, noScore: 0, dosha: "Vata" },
+    { text: "Do you shiver in winter season more than your friends?", yesScore: 60, noScore: 0, dosha: "Vata" },
+    { text: "Do you often feel stiffness in your body after exercise, traveling?", yesScore: 60, noScore: 0, dosha: "Vata" },
+    { text: "Are your nails, teeth, hands, feet, and hairs on your body and face rough?", yesScore: 120, noScore: 0, dosha: "Vata" },
+    { text: "Do you have cracks on the body especially on the heels?", yesScore: 60, noScore: 0, dosha: "Vata" },
+    { text: "Are some crackling sounds produced in your joints during movements?", yesScore: 60, noScore: 0, dosha: "Vata" },
+
 ];
 
-const welcomeScreen = document.getElementById("welcomeScreen");
-const questionnaireScreen = document.getElementById("questionnaireScreen");
-const resultsScreen = document.getElementById("resultsScreen");
+// Initialize variables to store user responses and calculate total scores
+let userScores = {
+    Kapha: 0,
+    Pitta: 0,
+    Vata: 0
+};
 
-function startAnalysis() {
-    welcomeScreen.classList.add("hidden");
-    questionnaireScreen.classList.remove("hidden");
-    showQuestion();
+// Function to dynamically generate questions
+function generateQuestions() {
+    const form = document.getElementById('prakritiForm');
+
+    questions.forEach((question, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.innerHTML = `
+            <p>${index + 1}. ${question.text}</p>
+            <label>
+                <input type="radio" name="q${index}" value="yes" data-score="${question.yesScore}" required> Yes
+            </label>
+            <label>
+                <input type="radio" name="q${index}" value="no" data-score="${question.noScore}" required> No
+            </label>
+        `;
+        form.insertBefore(questionElement, form.lastChild);
+    });
 }
 
-function showQuestion() {
-    const questionContainer = document.getElementById("questionContainer");
-    const currentQuestionData = questions[currentQuestion];
+// Function to calculate the individual prakriti percentage
+function calculatePrakriti() {
+    const form = document.getElementById('prakritiForm');
+    const resultDiv = document.getElementById('result');
 
-    let optionsHtml = '';
-    currentQuestionData.options.forEach((option, index) => {
-        optionsHtml += `<label class="option">
-                            <input type="radio" name="answer" value="${index}" required>
-                            ${option}
-                        </label>`;
+    userScores = {
+        Kapha: 0,
+        Pitta: 0,
+        Vata: 0
+    };
+
+    questions.forEach((question, index) => {
+        const selectedOption = form.querySelector(`input[name="q${index}"]:checked`);
+        if (selectedOption) {
+            const score = parseInt(selectedOption.getAttribute('data-score'));
+            userScores[question.dosha] += score;
+        }
     });
 
-    questionContainer.innerHTML = `<p class="question">${currentQuestionData.question}</p>${optionsHtml}`;
+    // Calculate percentages and display the result
+    resultDiv.innerHTML = "";
+    Object.keys(userScores).forEach(dosha => {
+        const totalScore = questions.filter(question => question.dosha === dosha)
+            .reduce((total, question) => total + Math.max(question.yesScore, question.noScore), 0);
+        const percentage = (userScores[dosha] / totalScore) * 100;
+
+        resultDiv.innerHTML += `<p>${dosha} Percentage: ${percentage.toFixed(2)}%</p>`;
+    });
 }
 
-function prevQuestion() {
-    if (currentQuestion > 0) {
-        currentQuestion--;
-        showQuestion();
-    }
-}
-
-function nextQuestion() {
-    const answer = document.querySelector('input[name="answer"]:checked');
-    if (answer) {
-        answers.push(answer.value);
-
-        if (currentQuestion < questions.length - 1) {
-            currentQuestion++;
-            showQuestion();
-        } else {
-            finishAnalysis();
-        }
-    } else {
-        alert("Please select an answer");
-    }
-}
-
-function finishAnalysis() {
-    questionnaireScreen.classList.add("hidden");
-    resultsScreen.classList.remove("hidden");
-
-    // Perform dosha analysis and display results
-    const doshaSummary = document.getElementById("doshaSummary");
-    const recommendations = document.getElementById("recommendations");
-
-    // Simulate dosha analysis based on answers
-    const vataCount = answers.filter(ans => ans === "0").length;
-    const pittaCount = answers.filter(ans => ans === "1").length;
-    const kaphaCount = answers.filter(ans => ans === "2").length;
-
-    // Determine the dominant dosha
-    let dominantDosha = "Vata";
-    if (pittaCount > vataCount && pittaCount > kaphaCount) {
-        dominantDosha = "Pitta";
-    } else if (kaphaCount > vataCount && kaphaCount > pittaCount) {
-        dominantDosha = "Kapha";
-    }
-
-    doshaSummary.innerText = `Your dominant dosha is ${dominantDosha}.`;
-    recommendations.innerText = "Here are personalized recommendations for you...";
-}
-
-function restartAnalysis() {
-    currentQuestion = 0;
-    answers = [];
-
-    resultsScreen.classList.add("hidden");
-    questionnaireScreen.classList.remove("hidden");
-    showQuestion();
-}
-
-// Initial question display
-showQuestion();
+// Call the function to generate questions when the page loads
+generateQuestions();
