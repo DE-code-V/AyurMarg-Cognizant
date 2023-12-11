@@ -1,34 +1,27 @@
-// script.js
+// Function to go to search engine section
+function goToSearch() {
+    const searchInput = document.getElementById('searchInput').value;
+    // Use the searchInput value to navigate to the search engine section
+    // You can use window.location or any framework-specific routing method
+  }
+  
+  // You'll need JavaScript for other functionalities like sign-in handling, cart interaction, etc.
+  
 
-// Function to get a dynamic greeting based on the time of the day
-function getGreeting() {
-    const currentTime = new Date().getHours();
-    let greeting;
-  
-    if (currentTime < 12) {
-      greeting = 'Good Morning';
-    } else if (currentTime < 18) {
-      greeting = 'Good Afternoon';
-    } else {
-      greeting = 'Good Evening';
-    }
-  
-    return greeting;
-  }
-  
-  // Update the header with a dynamic greeting
-  const header = document.querySelector('header');
-  header.innerHTML += `<p>${getGreeting()}, Welcome to AyurMarg</p>`;
-  
-  // Update the search button click event to show a greeting alert
-  function search() {
-    const searchTerm = document.getElementById('searchInput').value;
-  
-    // Display a greeting alert with the user's input
-    alert(`${getGreeting()}! You searched for: ${searchTerm}`);
-  }
-  
-  // Add an event listener for the search button
-  const searchButton = document.querySelector('button');
-  searchButton.addEventListener('click', search);
-  
+{/* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script> */}
+  $(document).ready(function() {
+    $('.review-slider').on('scroll', function() {
+      let cardWidth = $('.review-card').outerWidth(true); // Include margins
+      let scrollLeft = $(this).scrollLeft();
+      let maxScroll = $('.review-slider').get(0).scrollWidth - $('.review-slider').width();
+
+      if (scrollLeft === maxScroll) {
+        $('.review-slider').animate({ scrollLeft: 0 }, 'slow'); // Scroll back to start
+      } else if (scrollLeft % cardWidth === 0) {
+        // Smoothly scroll to next card position
+        $(this).animate({ scrollLeft: scrollLeft + cardWidth }, 'slow');
+      }
+    });
+  });
+// </script>
