@@ -23,7 +23,7 @@ with st.sidebar:
         ''')
     st.write('Made with ❤️ by [Team Ayurmarg](https://www.youtube.com/watch?v=6_fYrOHm7QE&t=13s)')
 
-load_dotenv("D:\\Computer_Programming\\Python\\ayurveda_model\\.env")
+load_dotenv()
 
 client = OpenAI(
     api_key = os.environ['OPENAI_API_KEY']
